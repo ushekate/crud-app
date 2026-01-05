@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddUser from './components/AddUser';
 import UserList from './components/UserList';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
-import { useEffect } from 'react';
 
 function AppContent() {
   const { toggleTheme, darkMode } = useTheme();
@@ -19,17 +18,11 @@ function AppContent() {
           {darkMode ? '☀️' : '🌙'}
         </button>
       </nav>
-      <div className="pt-20">  {/* Offset for fixed nav */}
-        {/* <Routes>
-          <Route path="/" element={<UserList />} />
-          <Route path="/add" element={<AddUser />} />
-          <Route path="/add/:id" element={<AddUser />} />
-        </Routes> */}
-
+      <div className="pt-20">
         <Routes>
-          <Route path="/" element={<AddUser />} />
-          <Route path="/edit/:id" element={<AddUser />} />
-          <Route path="/users" element={<UserList />} />
+          <Route path="/" element={<AddUser />} />  {/* Home: Blank Add Form */}
+          <Route path="/edit/:id" element={<AddUser />} />  {/* Edit: Pre-filled Form */}
+          <Route path="/users" element={<UserList />} />  {/* List Page */}
         </Routes>
       </div>
     </>
@@ -47,7 +40,6 @@ function App() {
 }
 
 export default App;
-
 
 
 

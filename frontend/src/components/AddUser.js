@@ -7,7 +7,7 @@ const API = "https://crud-backend-nhxa.onrender.com/api/users";
 const AddUser = () => {
   const [form, setForm] = useState({ name: '', email: '', age: '' });
   const [editingId, setEditingId] = useState(null);
-  const [loading, setLoading] = useState(false);  // New: For fetch spinner
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const { darkMode } = useTheme();
@@ -17,9 +17,7 @@ const AddUser = () => {
       setLoading(true);
       fetch(`${API}/${id}`)
         .then(res => {
-          if (!res.ok) {
-            throw new Error('User not found');
-          }
+          if (!res.ok) throw new Error('User not found');
           return res.json();
         })
         .then(user => {
@@ -31,7 +29,7 @@ const AddUser = () => {
           }
         })
         .catch(err => {
-          console.error('Fetch error:', err);  // Keep minimal for errors
+          console.error('Fetch error:', err);
           navigate('/users');
         })
         .finally(() => setLoading(false));
@@ -74,7 +72,6 @@ const AddUser = () => {
         <h2 className={`text-2xl font-bold text-center mb-6 ${darkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>
           {editingId ? 'Edit User' : 'Add New User'}
         </h2>
-
         <div className="space-y-3">
           <input
             className={`w-full border p-2 rounded focus:ring-2 focus:ring-indigo-400 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
@@ -94,16 +91,12 @@ const AddUser = () => {
             value={form.age}
             onChange={e => setForm({ ...form, age: e.target.value })}
           />
-
           <button
             onClick={submit}
-            className={`w-full text-white py-2 rounded transition ${
-              editingId ? 'bg-green-600 hover:bg-green-700' : 'bg-indigo-600 hover:bg-indigo-700'
-            }`}
+            className={`w-full text-white py-2 rounded transition ${editingId ? 'bg-green-600 hover:bg-green-700' : 'bg-indigo-600 hover:bg-indigo-700'}`}
           >
             {editingId ? 'Update User' : 'Add User'}
           </button>
-
           <button
             onClick={() => navigate('/users')}
             className={`w-full text-white py-2 rounded transition bg-gray-500 hover:bg-gray-600`}
@@ -117,7 +110,6 @@ const AddUser = () => {
 };
 
 export default AddUser;
-
 
 
 

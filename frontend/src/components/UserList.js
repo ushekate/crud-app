@@ -13,9 +13,7 @@ const UserList = () => {
   const fetchUsers = async () => {
     try {
       const res = await fetch(API);
-      if (!res.ok) {
-        throw new Error('Failed to fetch users');
-      }
+      if (!res.ok) throw new Error('Failed to fetch users');
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -54,7 +52,6 @@ const UserList = () => {
             Add New User
           </button>
         </div>
-
         {users.length === 0 ? (
           <p className="text-center text-gray-500">No users yet. <button onClick={() => navigate('/')} className="text-indigo-600 underline">Add one!</button></p>
         ) : (
@@ -62,16 +59,13 @@ const UserList = () => {
             {users.map(u => (
               <li
                 key={u._id}
-                className={`flex justify-between items-center p-3 rounded shadow-sm ${
-                  darkMode ? 'bg-gray-700' : 'bg-gray-50'
-                }`}
+                className={`flex justify-between items-center p-3 rounded shadow-sm ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}
               >
                 <div>
                   <p className="font-medium">{u.name}</p>
                   <p className="text-sm text-gray-500">{u.email}</p>
                   {u.age && <p className="text-sm text-gray-400">Age: {u.age}</p>}
                 </div>
-
                 <div className="flex gap-3">
                   <button
                     onClick={() => editUser(u._id)}
