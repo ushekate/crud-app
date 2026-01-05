@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ImBin } from "react-icons/im";
 
-const API = "http://localhost:5000/api/users";
+const API = "https://crud-backend-nhxa.onrender.com/api/users";
 
 function App() {
   const [users, setUsers] = useState([]);
