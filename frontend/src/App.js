@@ -20,10 +20,16 @@ function AppContent() {
         </button>
       </nav>
       <div className="pt-20">  {/* Offset for fixed nav */}
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<UserList />} />
           <Route path="/add" element={<AddUser />} />
           <Route path="/add/:id" element={<AddUser />} />
+        </Routes> */}
+
+        <Routes>
+          <Route path="/" element={<AddUser />} />
+          <Route path="/edit/:id" element={<AddUser />} />
+          <Route path="/users" element={<UserList />} />
         </Routes>
       </div>
     </>
